@@ -1,0 +1,154 @@
+/* === Reset básico === */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: sans-serif;
+  color: #f1f1f1;
+}
+
+/* === Containers === */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-container {
+  padding: 2rem;
+}
+
+/* === Formulário de Login === */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #1f1f1f;
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+label {
+  font-weight: bold;
+  color: #f1f1f1;
+  font-size: 14px;
+}
+
+input {
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: #2b2b2b;
+  color: #f1f1f1;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+input:focus {
+  outline: 2px solid #2d79f3;
+}
+
+.button-submit {
+  height: 45px;
+  background-color: #2d79f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* === Mensagem de erro === */
+#mensagem {
+  margin-top: 10px;
+  color: #ff4d4f;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* === Filtros e busca === */
+.filtros-linha {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filtros-linha label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+.filtro-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  color: #000;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+/* === Botão buscar === */
+.buscar-btn {
+  height: 36px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.buscar-btn:hover {
+  background-color: #0056b3;
+}
+
+/* === Tabela de resultados === */
+#resultados table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+  background-color: #fefefe;
+  color: #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#resultados th,
+#resultados td {
+  border: 1px solid #dcdcdc;
+  padding: 8px;
+  text-align: left;
+  color: #000;
+}
+
+#resultados th {
+  background-color: #f3f7fa;
+  color: #333;
+}
+
+#resultados tr:nth-child(even) {
+  background-color: #f9f9fc;
+}
+
+#resultados tr:nth-child(odd) {
+  background-color: #fcfcf9;
+}
+
+#resultados tr:hover {
+  background-color: #e0f7fa;
+}

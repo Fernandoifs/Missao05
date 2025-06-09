@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Contratos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="container" id="login-container">
+    <form class="form" id="login-form">
+      <label>Usuário</label>
+      <input type="text" id="username" class="input" placeholder="Digite seu usuário" />
+
+      <label>Senha</label>
+      <input type="password" id="password" class="input" placeholder="Digite sua senha" />
+
+      <button type="submit" class="button-submit">Entrar</button>
+      <p id="mensagem"></p>
+    </form>
+  </div>
+
+  <div class="container" id="home-container" style="display:none">
+    <h2 id="welcome"></h2>
+
+    <div id="admin-controls" style="display: none; margin-bottom: 1rem;">
+      <div class="filtros-linha">
+        <label>
+          Buscar Empresa:
+          <select id="empresa-select" class="filtro-select">
+            <option value="">Todas</option>
+          </select>
+        </label>
+
+        <label>
+          Data de Início de Contrato:
+          <select id="data-select" class="filtro-select">
+            <option value="">Todas</option>
+          </select>
+        </label>
+
+        <button id="buscar-contratos" class="buscar-btn">Buscar Contratos</button>
+      </div>
+    </div>
+
+    <div id="resultados"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
