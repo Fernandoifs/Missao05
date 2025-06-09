@@ -45,8 +45,81 @@ loginForm.addEventListener('submit', async (e) => {
   }
 });
 
+document.getElementById('buscar-usuarios').addEventListener('click', async () => {
+  const usuario = document.getElementById('usuario-select').value;
+  const perfil = document.getElementById('perfil-select').value;
+  const token = localStorage.getItem('token');
+
+  const res = await fetch('http://localhost:3000/api/users', {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+
+  const json = await res.json();
+
+  if (!res.ok) {
+    resultado.innerHTML = `<p>${json.message || 'Erro ao buscar usuários.'}</p>`;
+    return;
+  }
+
+  let users = json.data;
+
+  if (usuario) {
+    users = users.filter(u => u.username.toLowerCase().includes(usuario.toLowerCase()));
+  }
+
+  if (perfil) {
+    users = users.filter(u => u.role === perfil);
+  }
+
+  if (!users.length) {
+    resultado.innerHTML = `<p>Nenhum usuário encontrado.</p>`;
+    return;
+  }
+
+  let existingContent = resultado.innerHTML;
+  let table = `
+    <table border="1" style="width: 50%; border-collapse: collapse; color: #fff; margin-top: 20px;">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Perfil</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${users.map(u => `
+          <tr>
+            <td>${u.username}</td>
+            <td>${u.role}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+
+  resultado.innerHTML = existingContent + table;
+});
+
 async function preencherFiltros() {
   const token = localStorage.getItem('token');
+
+  // Fetch users for the user select
+  const usersRes = await fetch('http://localhost:3000/api/users', {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+
+  const usersJson = await usersRes.json();
+  const usuarios = usersJson.data.map(u => u.username);
+  const usuarioSelect = document.getElementById('usuario-select');
+
+  usuarioSelect.innerHTML = '<option value="">Todos</option>';
+  usuarios.forEach(u => {
+    const opt = document.createElement('option');
+    opt.value = u;
+    opt.textContent = u;
+    usuarioSelect.appendChild(opt);
+  });
+
+  // Existing contracts fetch
   const res = await fetch('http://localhost:3000/api/contracts', {
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -115,7 +188,7 @@ document.getElementById('buscar-contratos').addEventListener('click', async () =
           <tr>
             <td>${c.empresa}</td>
             <td>${c.data_inicio}</td>
-            <td>${c.data_fim || '-'}</td>
+            <td>${c.data_final || '-'}</td>
           </tr>
         `).join('')}
       </tbody>
