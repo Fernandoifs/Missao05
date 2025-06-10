@@ -1,0 +1,133 @@
+type: collection.insomnia.rest/5.0
+name: Missao05
+meta:
+  id: wrk_c259d62da7fd4f22b21233f4ae852b09
+  created: 1749171956877
+  modified: 1749171956877
+  description: ""
+collection:
+  - name: Insomnia Missao05
+    meta:
+      id: fld_5430f65df1724679adf1f3d6e99ebb05
+      created: 1749172009133
+      modified: 1749513258487
+      sortKey: -1749172009133
+      description: ""
+    children:
+      - url: "{{ _.url }}/api/auth/login"
+        name: Login
+        meta:
+          id: req_974cc528b045491cbaeed6c5e2129a93
+          created: 1749172030564
+          modified: 1749508117602
+          isPrivate: false
+          description: ""
+          sortKey: -1749172033997
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "admin",
+              "password": "123456789"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.1
+        authentication:
+          type: bearer
+          token: "{{ _.jwt_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/api/users"
+        name: Session
+        meta:
+          id: req_ad88a3efe326499486d48d79dc0f982c
+          created: 1749412718069
+          modified: 1749509116009
+          isPrivate: false
+          description: ""
+          sortKey: -1748867949181.5
+        method: GET
+        parameters:
+          - id: pair_8055c5f738b5431d878c6bafd7f2e524
+            name: ""
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+            id: pair_203237440e0644f68110f029ee00e9cd
+          - id: pair_9094bd3ff5fe4556b2bae9bd80f62d70
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/api/contracts"
+        name: Contracts
+        meta:
+          id: req_4bfa5609c8384eecb5e5c822523134e4
+          created: 1749412902329
+          modified: 1749509109462
+          isPrivate: false
+          description: ""
+          sortKey: -1748639885644.875
+        method: GET
+        parameters:
+          - id: pair_e0dcfb449c4d469fa244018ff7377d0c
+            name: empresa
+            value: Empresa A
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+            id: pair_203237440e0644f68110f029ee00e9cd
+          - id: pair_ec9fd9dfab95487c960ad507fb6a91f4
+            name: Authorization
+            value: Bearer {{ _.token }}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_01156a823d1535c645ef16824283700c84c2fc3d
+    created: 1749171956879
+    modified: 1749171956879
+environments:
+  name: Base Environment
+  meta:
+    id: env_01156a823d1535c645ef16824283700c84c2fc3d
+    created: 1749171956878
+    modified: 1749509097767
+    isPrivate: false
+  data:
+    url: http://localhost:3000
+    jwt_token: M2JmYjcwNzAxYzY4NzM2NTIzNTM3ZjU0MjA1MzNkM2Y
+    token: "{% response 'body', 'req_974cc528b045491cbaeed6c5e2129a93',
+      'b64::JC50b2tlbg==::46b', 'never', 60 %}"
